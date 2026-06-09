@@ -43,10 +43,29 @@ export default function App() {
     seedIfEmpty();
   }, []);
 
+  // ── Browser history integration (fixes mobile swipe-back) ──────────
+  useEffect(() => {
+    // Set initial history entry so swipe-back has somewhere to go
+    window.history.replaceState({ screen: 'menu' }, '');
+
+    function handlePopState(e) {
+      const prev = e.state?.screen || 'menu';
+      if (prev === 'select' || prev === 'menu') {
+        seriesResults.current = [];
+      }
+      setScreen(prev);
+    }
+
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
+
   function handleSetScreen(s) {
     if (s === 'select' || s === 'menu') {
       seriesResults.current = [];
     }
+    // Push a history entry so back gesture returns here
+    window.history.pushState({ screen: s }, '');
     setScreen(s);
   }
 
