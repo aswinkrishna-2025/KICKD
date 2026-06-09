@@ -1,0 +1,364 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* ══════════════════════════════════════════
+   ROOT SHELL
+══════════════════════════════════════════ */
+.ls {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: #080d1a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+
+  /* Whole-screen fade out on exit */
+  transition: opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+  opacity: 1;
+}
+
+/* Exit: fade the whole screen to white then gone */
+.ls--p5 {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ══════════════════════════════════════════
+   AMBIENT BACKGROUND
+══════════════════════════════════════════ */
+.ls__ambient {
+  position: absolute;
+  inset: 0;
+  /* Two soft radial pools of color — top-right blue, bottom-left warm */
+  background:
+    radial-gradient(ellipse 55% 45% at 80% 10%,  rgba(30, 58, 138, 0.45) 0%, transparent 70%),
+    radial-gradient(ellipse 45% 40% at 15% 90%,  rgba(120, 53, 15, 0.25) 0%, transparent 70%),
+    radial-gradient(ellipse 60% 60% at 50% 50%,  rgba(15, 23, 41, 0.9)   0%, transparent 80%);
+  animation: ambient-shift 8s ease-in-out infinite alternate;
+}
+
+@keyframes ambient-shift {
+  from { opacity: 0.85; }
+  to   { opacity: 1;    }
+}
+
+/* ══════════════════════════════════════════
+   LUXURY TEXTURE — diagonal hairlines
+══════════════════════════════════════════ */
+.ls__texture {
+  position: absolute;
+  inset: 0;
+  background-image: repeating-linear-gradient(
+    -45deg,
+    transparent,
+    transparent 38px,
+    rgba(255, 255, 255, 0.018) 38px,
+    rgba(255, 255, 255, 0.018) 39px
+  );
+  pointer-events: none;
+}
+
+/* ══════════════════════════════════════════
+   CENTER COLUMN
+══════════════════════════════════════════ */
+.ls__col {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 380px;
+  padding: 0 28px;
+  gap: 0;
+}
+
+/* ══════════════════════════════════════════
+   RULE — draws horizontally from center
+══════════════════════════════════════════ */
+.ls__rule-wrap {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 28px;
+  gap: 0;
+}
+
+.ls__rule {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(255,255,255,0.25));
+  transform-origin: center;
+  transform: scaleX(0);
+  transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.ls__rule--right {
+  background: linear-gradient(to left, transparent, rgba(255,255,255,0.25));
+}
+
+.ls__rule-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  flex-shrink: 0;
+  opacity: 0;
+  transform: scale(0);
+  transition: opacity 0.4s ease 0.35s, transform 0.4s cubic-bezier(0.34,1.56,0.64,1) 0.35s;
+}
+
+/* Phase 1+: rule draws */
+.ls--p1 .ls__rule,
+.ls--p2 .ls__rule,
+.ls--p3 .ls__rule,
+.ls--p4 .ls__rule,
+.ls--p5 .ls__rule {
+  transform: scaleX(1);
+}
+
+.ls--p1 .ls__rule-dot,
+.ls--p2 .ls__rule-dot,
+.ls--p3 .ls__rule-dot,
+.ls--p4 .ls__rule-dot,
+.ls--p5 .ls__rule-dot {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* ══════════════════════════════════════════
+   BRAND NAME
+══════════════════════════════════════════ */
+.ls__brand-wrap {
+  position: relative;
+  margin-bottom: 12px;
+  overflow: hidden;
+}
+
+.ls__brand {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 82px;
+  letter-spacing: 14px;
+  color: #fff;
+  line-height: 1;
+
+  /* Hidden → visible via clip */
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path 0.75s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.ls__brand-underline {
+  position: absolute;
+  bottom: 4px;
+  left: 0;
+  height: 2px;
+  width: 100%;
+  background: linear-gradient(90deg, #1d4ed8, #60a5fa, #1d4ed8);
+  background-size: 200% auto;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1) 0.4s;
+  animation: shimmer-line 3s linear infinite paused;
+}
+
+@keyframes shimmer-line {
+  from { background-position: 0%   center; }
+  to   { background-position: 200% center; }
+}
+
+/* Phase 2+: brand reveals */
+.ls--p2 .ls__brand,
+.ls--p3 .ls__brand,
+.ls--p4 .ls__brand,
+.ls--p5 .ls__brand {
+  clip-path: inset(0 0% 0 0);
+}
+
+.ls--p2 .ls__brand-underline,
+.ls--p3 .ls__brand-underline,
+.ls--p4 .ls__brand-underline,
+.ls--p5 .ls__brand-underline {
+  transform: scaleX(1);
+  animation-play-state: running;
+}
+
+/* ══════════════════════════════════════════
+   TAGLINE
+══════════════════════════════════════════ */
+.ls__tag {
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 3.5px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.38);
+  margin-bottom: 40px;
+
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+/* Phase 3+: tagline fades up */
+.ls--p3 .ls__tag,
+.ls--p4 .ls__tag,
+.ls--p5 .ls__tag {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ══════════════════════════════════════════
+   SEPARATOR
+══════════════════════════════════════════ */
+.ls__sep {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  margin-bottom: 20px;
+
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.5s ease 0.1s, transform 0.5s ease 0.1s;
+}
+
+.ls__sep-line {
+  flex: 1;
+  height: 1px;
+  background: rgba(255,255,255,0.1);
+}
+
+.ls__sep-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 8.5px;
+  font-weight: 600;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.28);
+  white-space: nowrap;
+}
+
+/* Phase 4+: separator and credits reveal */
+.ls--p4 .ls__sep,
+.ls--p5 .ls__sep {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ══════════════════════════════════════════
+   PARTNERS
+══════════════════════════════════════════ */
+.ls__partners {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  width: 100%;
+  margin-bottom: 16px;
+
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.55s ease 0.2s, transform 0.55s ease 0.2s;
+}
+
+.ls--p4 .ls__partners,
+.ls--p5 .ls__partners {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.ls__partner {
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+
+.ls__partner-name {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.9);
+  letter-spacing: 0.2px;
+}
+
+.ls__partner-x {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 300;
+  color: rgba(255,255,255,0.22);
+  padding: 0 2px;
+}
+
+/* ══════════════════════════════════════════
+   COLLEGE
+══════════════════════════════════════════ */
+.ls__college {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 44px;
+
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.5s ease 0.3s, transform 0.5s ease 0.3s;
+}
+
+.ls--p4 .ls__college,
+.ls--p5 .ls__college {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.ls__college-bar {
+  width: 30px;
+  height: 1px;
+  background: rgba(245,158,11,0.4);
+}
+
+.ls__college-text {
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: rgba(245,158,11,0.7);
+  text-align: center;
+}
+
+/* ══════════════════════════════════════════
+   PROGRESS BAR
+══════════════════════════════════════════ */
+.ls__progress {
+  width: 100%;
+  height: 1px;
+  background: rgba(255,255,255,0.08);
+  position: relative;
+  overflow: hidden;
+
+  opacity: 0;
+  transition: opacity 0.4s ease 0.5s;
+}
+
+.ls--p4 .ls__progress,
+.ls--p5 .ls__progress {
+  opacity: 1;
+}
+
+.ls__progress-fill {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent);
+  width: 40%;
+  animation: progress-sweep 1.4s ease-in-out infinite paused;
+}
+
+.ls--p4 .ls__progress-fill {
+  animation-play-state: running;
+}
+
+@keyframes progress-sweep {
+  0%   { transform: translateX(-150%); }
+  100% { transform: translateX(350%);  }
+}

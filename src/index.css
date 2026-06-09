@@ -1,0 +1,73 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&display=swap');
+
+/* ══════════════════════════════════════════
+   DESIGN TOKENS
+══════════════════════════════════════════ */
+:root {
+  /* Palette */
+  --navy:       #0f1729;
+  --navy-mid:   #1e2d4d;
+  --navy-soft:  #2a3f6b;
+  --blue:       #2563eb;
+  --blue-light: #3b82f6;
+  --blue-glow:  rgba(37,99,235,0.18);
+  --gold:       #f59e0b;
+  --gold-light: #fbbf24;
+  --red:        #ef4444;
+  --red-soft:   rgba(239,68,68,0.12);
+  --white:      #ffffff;
+  --bg:         #f8fafc;
+  --bg-card:    #ffffff;
+  --bg-hover:   #f1f5f9;
+  --border:     #e2e8f0;
+  --border-mid: #cbd5e1;
+  --text:       #0f172a;
+  --text-sub:   #475569;
+  --text-muted: #94a3b8;
+
+  /* Type */
+  --font-display: 'Bebas Neue', sans-serif;
+  --font-ui:      'Inter', sans-serif;
+
+  /* Radii */
+  --r-sm:  8px;
+  --r-md:  12px;
+  --r-lg:  18px;
+  --r-xl:  24px;
+  --r-full: 9999px;
+
+  /* Shadows */
+  --shadow-sm:  0 1px 3px rgba(15,23,41,0.08), 0 1px 2px rgba(15,23,41,0.04);
+  --shadow-md:  0 4px 12px rgba(15,23,41,0.10), 0 2px 4px rgba(15,23,41,0.06);
+  --shadow-lg:  0 10px 30px rgba(15,23,41,0.12), 0 4px 8px rgba(15,23,41,0.06);
+  --shadow-xl:  0 20px 50px rgba(15,23,41,0.14), 0 8px 16px rgba(15,23,41,0.07);
+  --shadow-blue: 0 4px 20px rgba(37,99,235,0.25);
+  --shadow-gold: 0 4px 20px rgba(245,158,11,0.25);
+}
+
+/* ══════════════════════════════════════════
+   RESET & BASE
+══════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  height: 100%;
+  background: var(--bg);
+  font-family: var(--font-ui);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  max-width: 430px;
+  margin: 0 auto;
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+  background: var(--bg);
+}
+
+button { cursor: pointer; font-family: var(--font-ui); border: none; background: none; }
+canvas  { touch-action: none; display: block; }
+input   { font-family: var(--font-ui); }

@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="white">
+  <!--
+    Framedrop Interactive logo:
+    Square bracket/frame icon — 3-sided bold frame
+    with top-right corner detached and offset up-right.
+    Designed to match the YouTube channel profile icon.
+  -->
+
+  <!-- Left vertical bar -->
+  <rect x="10" y="14" width="13" height="72"/>
+
+  <!-- Bottom horizontal bar -->
+  <rect x="10" y="73" width="66" height="13"/>
+
+  <!-- Top-left horizontal portion -->
+  <rect x="10" y="14" width="46" height="13"/>
+
+  <!-- Detached top-right corner bracket (offset up and right) -->
+  <!-- Top piece of corner -->
+  <rect x="52" y="5" width="38" height="12"/>
+  <!-- Right vertical piece of corner -->
+  <rect x="78" y="5" width="12" height="40"/>
+</svg>

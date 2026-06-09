@@ -1,0 +1,238 @@
+/* ══════════════════════════════════════════
+   MAIN MENU
+══════════════════════════════════════════ */
+.mm {
+  min-height: calc(100vh - 68px);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: stretch;
+}
+
+/* Dark navy background with subtle glow */
+.mm__bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 70% 50% at 85% 5%,  rgba(37,99,235,0.22) 0%, transparent 65%),
+    radial-gradient(ellipse 50% 40% at 10% 95%, rgba(245,158,11,0.12) 0%, transparent 65%),
+    #0f1729;
+  z-index: 0;
+}
+
+.mm__content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 32px 20px 120px;
+  gap: 0;
+}
+
+/* ── Badge ── */
+.mm__badge {
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #f59e0b;
+  background: rgba(245,158,11,0.1);
+  border: 1px solid rgba(245,158,11,0.25);
+  padding: 5px 14px;
+  border-radius: 999px;
+  margin-bottom: 24px;
+}
+
+/* ── Hero ── */
+.mm__hero {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.mm__brand {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 80px;
+  letter-spacing: 10px;
+  color: #ffffff;
+  line-height: 1;
+  margin-bottom: 12px;
+  /* Subtle text glow */
+  text-shadow: 0 0 60px rgba(37,99,235,0.4);
+}
+
+.mm__tagline {
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  color: rgba(255,255,255,0.45);
+  line-height: 1.5;
+  max-width: 260px;
+  margin: 0 auto;
+}
+
+/* ── Play Button ── */
+.mm__play-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  max-width: 320px;
+  padding: 17px 28px;
+  background: #2563eb;
+  color: #fff;
+  border: none;
+  border-radius: 14px;
+  font-family: 'Inter', sans-serif;
+  font-size: 17px;
+  font-weight: 800;
+  letter-spacing: 0.3px;
+  cursor: pointer;
+  margin-bottom: 40px;
+  box-shadow: 0 8px 30px rgba(37,99,235,0.4);
+  transition: transform 0.15s, box-shadow 0.15s, background 0.15s;
+  position: relative;
+  overflow: hidden;
+}
+
+.mm__play-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.12) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.mm__play-btn:hover {
+  background: #1d4ed8;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 36px rgba(37,99,235,0.5);
+}
+
+.mm__play-btn:active {
+  transform: translateY(0);
+}
+
+.mm__play-icon {
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+/* ── Partners ── */
+.mm__partners {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-bottom: 28px;
+}
+
+.mm__partner-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 16px;
+  padding: 18px;
+}
+
+.mm__partner-logo {
+  width: 46px;
+  height: 46px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: #fff;
+  flex-shrink: 0;
+  letter-spacing: 1px;
+}
+
+.mm__partner-logo--img {
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.4);
+}
+
+.mm__partner-logo--mp {
+  background: linear-gradient(135deg, #92400e, #f59e0b);
+  box-shadow: 0 4px 14px rgba(245,158,11,0.35);
+}
+
+.mm__partner-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.mm__partner-name {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 800;
+  color: #ffffff;
+  margin-bottom: 5px;
+  letter-spacing: 0.1px;
+}
+
+.mm__partner-desc {
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  color: rgba(255,255,255,0.42);
+  line-height: 1.6;
+}
+
+.mm__partner-tag {
+  font-family: 'Inter', sans-serif;
+  font-size: 9.5px;
+  font-weight: 600;
+  color: rgba(245,158,11,0.7);
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  margin-bottom: 6px;
+}
+
+/* ── Divider between partner cards ── */
+.mm__divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 4px;
+}
+
+.mm__divider-line {
+  flex: 1;
+  height: 1px;
+  background: rgba(255,255,255,0.06);
+}
+
+.mm__divider-x {
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  font-weight: 300;
+  color: rgba(255,255,255,0.15);
+}
+
+/* ── College ── */
+.mm__college {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.8px;
+  color: rgba(255,255,255,0.25);
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.mm__college-icon {
+  font-size: 14px;
+}
