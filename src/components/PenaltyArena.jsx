@@ -8,11 +8,11 @@ const BALL_X = 210, BALL_Y = 248;
 const GOAL = { x: 110, y: 20, w: 200, h: 68 };
 
 /* ─── Difficulty ─────────────────────────────────────────── */
-const KEEPER_PATROL_SPEED = 2.8;
-const KEEPER_DIVE_FAST     = 0.12;   // fast dive speed (harder)
-const KEEPER_DIVE_SLOW     = 0.065;  // slow reaction dive speed
-const KEEPER_REACH        = 36;     // catch radius in pixels
-const MISS_CHANCE         = 0.07;   // random miss chance
+const KEEPER_PATROL_SPEED = 2.0;
+const KEEPER_DIVE_FAST     = 0.09;   // fast dive speed (slightly slower than before)
+const KEEPER_DIVE_SLOW     = 0.045;  // slow reaction dive speed
+const KEEPER_REACH        = 26;     // catch radius in pixels (was 36)
+const MISS_CHANCE         = 0.03;   // random miss chance (was 0.07)
 
 /* ─── Math helpers ───────────────────────────────────────── */
 function lerp(a, b, t) { return a + (b - a) * t; }
@@ -478,11 +478,11 @@ export default function PenaltyArena({ selectedTeam, setScreen, seriesResults })
       let targetY = tgtY < 50 ? 30 : 65;
       let diveSpeed = KEEPER_DIVE_FAST;
 
-      if (rand < 0.65) {
-        // Option 1: Correct Anticipation (dive fast to the shot location)
-        targetX = tgtX + (Math.random() - 0.5) * 15;
+      if (rand < 0.40) {
+        // Option 1: Correct Anticipation — but with wider random offset
+        targetX = tgtX + (Math.random() - 0.5) * 25;
         diveSpeed = KEEPER_DIVE_FAST;
-      } else if (rand < 0.80) {
+      } else if (rand < 0.65) {
         // Option 2: Wrong Anticipation (dive to the opposite side of the goal)
         const goalCenter = GOAL.x + GOAL.w / 2; // 210
         const shotOffset = tgtX - goalCenter;
